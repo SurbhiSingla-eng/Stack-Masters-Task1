@@ -1,0 +1,14 @@
+Code Submission
+       ↓
+Generate AST
+       ↓
+Normalize identifiers
+(variable names → VAR)
+       ↓
+Run Zhang–Shasha
+       ↓
+Compute Tree Edit Distance
+       ↓
+Convert to Similarity %
+       ↓
+Structural Match Score
