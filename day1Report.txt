@@ -1,0 +1,101 @@
+Basic definitions: 
+Heuristics: Instead of checking every possible solution, it uses shortcuts and approximations to find satisfactory results quickly when an exact calculation is too slow or computationally impossible.
+
+Scope: boundaries of our project
+
+Zhang-Shasha algorithm: it determines the minimum cost required to transform one tree into another using a series of node operations, generalizing the concept of string edit distance to hierarchical structures.
+Works on 3 concepts… ordered trees, tree edit operations, mappings.
+The Zhang–Shasha Algorithm is used in our Structural Match Heuristic to compare two code trees (ASTs) and measure how similar they are.
+
+
+Heuristic definitions
+Heuristic 1 — Text overlap (weight: 40%) Normalize submissions first: strip comments, collapse whitespace, lowercase identifiers, remove student name/ID strings. Then compute token-level Jaccard similarity. Threshold calibration: <60% = low, 60–80% = medium, >80% = high. Why token-level and not line-level? It catches reformatted copies where line breaks differ.
+Heuristic 2 — Structural match (weight: 35%) Parse submissions into an Abstract Syntax Tree (AST) using a library like tree-sitter (language-agnostic) or Python's ast module. Compare: number and nesting depth of functions, loop structure, control flow pattern (if/else tree shape), and order of top-level declarations. No ML needed — a simple tree-edit-distance or Zhang-Shasha algorithm gives a 0–100% similarity. This catches cases where variable names were changed but the algorithm structure was copied.
+Heuristic 3 — Submission timing (weight: 25%) Flag pairs submitted within a configurable window (default: 15 minutes) outside of class/lab hours. Cluster submissions by time — if 3+ students submit within 10 minutes of each other at 2 AM, that's a cluster event, not coincidence. Timing alone is weak signal; it amplifies the other two.
+Composite score formula:
+signal = (overlap × 0.40) + (structure × 0.35) + (timing_flag × 25)
+Timing contributes a flat 25 points if flagged, zero otherwise.
+
+Scope decisions
+In scope
+Out of scope
+Pair-wise comparison within one assignment
+Cross-assignment or cross-semester comparison
+Code submissions only (.py, .java, .c, .cpp)
+Essay or report plagiarism
+Flag + human review workflow
+Auto-penalization
+Instructor-facing signal panel
+Student-facing reports
+Heuristic scoring
+ML training or model inference
+
+
+CODE SNIPPET EXAMPLE: ( step by step as discussed in meeting )
+
+
+STUDENT A:
+
+def calculate_sum(a, b):
+    return a + b
+
+print(calculate_sum(5, 10))
+
+
+STUDENT B: ( variables changed )
+
+def calculate_sum(x, y):
+    return x + y
+
+print(calculate_sum(5, 10))
+
+
+NORMALIZATION:
+
+def calculate_sum(VAR, VAR):
+    return VAR + VAR
+
+print(calculate_sum(NUM, NUM))
+
+
+Result:
+Token similarity ≈ 90%
+Text Overlap = High Risk
+Hence, flag it
+
+
+2. STRUCTURE EXAMPLE: (abstract tree) 
+
+
+STUDENT A:
+for i in range(10):
+    if i % 2 == 0:
+        print(i)
+
+STUDENT B:
+
+for num in range(10):
+    if num % 2 == 0:
+        print(num)
+
+AST:
+
+
+FOR
+ └── IF
+      └── PRINT
+
+Result:
+Structure Match = 100%
+High structural similarity
+Why flagged?
+ Logic flow is identical despite renamed variables.
+
+3. Timing gaps mentioned in screen shot
+
+
+
+So, it will be flagged.
+
+
+
