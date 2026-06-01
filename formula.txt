@@ -1,0 +1,11 @@
+COMPOSITE SCORE FORMULA:
+
+signal = (overlap × 0.40) + (structure × 0.35) + (timing_flag × 25)
+example: Text Overlap      = 91
+Structure Match   = 88
+Timing Flag       = 25
+Signal=(91×0.40)+(88×0.35)+25
+36.4 + 30.8 + 25
+= 92.2
+Composite Score = 92.2
+Risk Level = HIGH
