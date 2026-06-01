@@ -1,0 +1,31 @@
+STUDENT A:
+           IF
+          /  \
+       (>=)  ELSE
+      /   \    |
+  marks   40  PRINT
+               |
+             "Fail"
+
+THEN
+ |
+PRINT
+ |
+"Pass"
+
+
+
+STUDENT B:
+           IF
+          /  \
+       (>=)  ELSE
+      /   \    |
+  score   40  PRINT
+               |
+             "Fail"
+
+THEN
+ |
+PRINT
+ |
+"Pass"
