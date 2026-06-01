@@ -1,0 +1,35 @@
+STUDENT A:
+
+For
+├── Target: i
+├── Iterator
+│   └── range(10)
+└── Body
+    └── If
+        ├── Condition
+        │   └── ==
+        │       ├── %
+        │       │   ├── i
+        │       │   └── 2
+        │       └── 0
+        └── Body
+            └── Print
+                └── i
+
+STUDENT B:(normalized)
+
+For
+├── Target: VAR
+├── Iterator
+│   └── range(10)
+└── Body
+    └── If
+        ├── Condition
+        │   └── ==
+        │       ├── %
+        │       │   ├── VAR
+        │       │   └── 2
+        │       └── 0
+        └── Body
+            └── Print
+                └── VAR
