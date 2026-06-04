@@ -1,0 +1,42 @@
+signal_panel/
+├── app/                        ← FastAPI backend
+│   ├── api/routes.py           12 endpoints
+│   ├── heuristics/
+│   │   ├── engine.py           5 code-aware heuristics
+│   │   ├── pipeline.py         assignment-scoped orchestrator
+│   │   ├── explainer.py        "why flagged" engine
+│   │   └── performance.py      MinHash + parallel compute
+│   ├── models/models.py        6 DB tables
+│   ├── schemas/schemas.py      all Pydantic contracts
+│   ├── db/session.py           DB session
+│   └── main.py                 FastAPI app
+├── alembic/                    DB migrations
+├── alembic.ini
+├── demo/seed.py                8-student demo dataset
+├── tests/                      113 tests
+├── requirements.txt
+├── pyproject.toml
+├── .env.example
+└── frontend/                   ← React frontend
+    ├── src/
+    │   ├── App.jsx             router + sidebar shell
+    │   ├── pages/
+    │   │   ├── AssignmentsPage.jsx   assignment list
+    │   │   ├── DashboardPage.jsx     stats + run button
+    │   │   ├── FlaggedPairsPage.jsx  filterable table + review
+    │   │   └── MatrixPage.jsx        similarity heatmap
+    │   ├── components/
+    │   │   ├── ui/index.jsx          shared primitives
+    │   │   ├── dashboard/
+    │   │   │   ├── NewAssignmentModal.jsx
+    │   │   │   └── SubmitModal.jsx
+    │   │   └── explainer/
+    │   │       └── ExplainerModal.jsx  full Day 5 panel
+    │   ├── hooks/useApi.js       data fetching
+    │   └── lib/
+    │       ├── api.js            all API calls
+    │       └── utils.js          risk colors, formatters
+    ├── package.json
+    ├── vite.config.js            proxies /api → :8000
+    ├── tailwind.config.js
+    └── index.html
