@@ -16,4 +16,4 @@ Below is the tabular representation of the data flow and execution pipeline for 
 
 <br>
 
-![Pipeline Architecture Diagram](mermaid-diagram-2026-06-04-195331.jpg)
+![Pipeline Architecture Diagram](mermaid-diagram-2026-06-04-195331.png)
